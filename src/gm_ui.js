@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         CB Utils
+// @name         GMUI
 // @namespace    abn
 // @version      1.0
-// @description  Utility functions for Chaturbate scripts
+// @description  Utility
 // @match        *://*
 // @grant        unsafeWindow
 // ==/UserScript==
