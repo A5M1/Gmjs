@@ -1,43 +1,31 @@
-export const GMUI = {
-    addStyle(css, doc = document) {
-        const style = doc.createElement('style');
-        style.textContent = css;
-        (doc.head || doc.documentElement).appendChild(style);
-    }
+window.GMUI = {
+	addStyle: function(e, t) {
+		t = t || document;
+		const n = t.createElement("style");
+		n.textContent = e, (t.head || t.documentElement)
+			.appendChild(n)
+	}
 };
+window.UIState = function() {
+	let e, t;
 
-export const UIState = (() => {
-    let key, style;
-
-    function set(state) {
-        if (!style) return;
-        if (state) {
-            if (!document.head.contains(style)) document.head.appendChild(style);
-            style.disabled = false;
-        } else {
-            style.disabled = true;
-        }
-    }
-
-    function toggle() {
-        const curr = localStorage.getItem(key) === 'true';
-        const next = !curr;
-        localStorage.setItem(key, String(next));
-        set(next);
-    }
-
-    function init(cfg) {
-        key = cfg.key;
-        style = document.createElement('style');
-        style.textContent = cfg.css;
-        document.addEventListener('keydown', e => {
-            if (e.altKey && e.key.toLowerCase() === cfg.hotkey) toggle();
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            set(localStorage.getItem(key) === 'true');
-            if (cfg.bodyClass) document.body.classList.add(cfg.bodyClass);
-        });
-    }
-
-    return { init };
-})();
+	function
+	n(o) {
+		t && (o ? (document.head.contains(t) || document.head.appendChild(t), t.disabled = !1) : t
+			.disabled = !0)
+	}
+	return {
+		init: function(o) {
+			e = o.key, t = document.createElement("style"), t.textContent = o.css, document
+				.addEventListener("keydown", function(t) {
+					t.altKey && t.key.toLowerCase() === o.hotkey && function() {
+						const t = !("true" === localStorage.getItem(e));
+						localStorage.setItem(e, String(t)), n(t)
+					}()
+				}), document.addEventListener("DOMContentLoaded", function() {
+					n("true" === localStorage.getItem(e)), o.bodyClass && document.body.classList
+						.add(o.bodyClass)
+				})
+		}
+	}
+}();
