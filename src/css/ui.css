@@ -1,0 +1,79 @@
+        @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+        [data-styleman=overlay] {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,.7);
+            backdrop-filter: blur(8px);
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: backdrop-filter .3s, background .3s, opacity .3s;
+        }
+        [data-styleman=overlay]:hover {
+            backdrop-filter: blur(3px);
+            background: rgba(0,0,0,.4);
+            opacity: .9;
+        }
+        [data-styleman=panel] {
+            position: relative;
+            font-family: 'Raleway', sans-serif;
+            background: #1a1a1a;
+            color: #eee;
+            border: 1px solid #555;
+            padding: 18px;
+            border-radius: 8px;
+            width: 700px;
+            box-shadow: 0 0 20px #000c;
+            z-index: 10001;
+        }
+        [data-styleman=panel] button {
+            margin: 4px;
+            padding: 6px 10px;
+            background: #2a2a2a;
+            border: 1px solid #666;
+            color: #eee;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        [data-styleman=panel] button:hover {
+            background: #444;
+        }
+        [data-styleman=editor] {
+            background: #000;
+            color: #eee;
+            font-family: monospace;
+            border-radius: 6px;
+            width: 98%;
+            height: 400px;
+            margin: 5px;
+            border: 2px solid #444;
+            resize: vertical;
+        }
+        [data-styleman=panel] select {
+            width: 100%;
+            margin: 8px 0;
+            background: #111;
+            color: #eee;
+            border: 1px solid #444;
+            padding: 4px;
+        }
+        [data-styleman]::-webkit-scrollbar {
+            width: 0!important;
+            height: 0!important;
+        }
+        .styleman-close-btn {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background: #b22222;
+            color: white;
+            border: none;
+            font-size: 18px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .styleman-close-btn:hover {
+            background: #ff4444;
+        }
