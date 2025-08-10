@@ -106,6 +106,66 @@
         generateTimestamp(days) {
             return Math.floor(Date.now() / 1000) + 24 * days * 60 * 60;
         }
+        
+        /**
+         * Fetches CSS and adds it to a specified root element.
+         * @param {string} url - The URL of the CSS file.
+         * @param {Element} rootElement - The DOM element to append the style to.
+         */
+        async addCss(url, rootElement) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch CSS from ${url}: ${response.statusText}`);
+                }
+                const cssText = await response.text();
+                const styleElement = document.createElement('style');
+                styleElement.textContent = cssText;
+                rootElement.appendChild(styleElement);
+                console.log(`Successfully added CSS from ${url} to Shadow DOM.`);
+            } catch (error) {
+                console.error(`Error fetching or adding CSS from ${url}:`, error);
+            }
+        }
+    
+        /**
+         * Executes a callback function when the DOM is fully loaded.
+         * @param {Function} callback - The function to execute.
+         */
+        onReady(callback) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', callback);
+            } else {
+                callback();
+            }
+        }
+        
+        /**
+         * Watches for URL changes and executes a callback function.
+         * @param {Function} cb - The callback function to execute on URL change.
+         */
+        watchUrl(cb) {
+            let last = location.href;
+            new MutationObserver(() => {
+                if (location.href !== last) {
+                    last = location.href;
+                    cb();
+                }
+            }).observe(document, { childList: true, subtree: true });
+        }
+        
+        /**
+         * Adds a keydown event listener for a specific key combination (Ctrl + key).
+         * @param {string} key - The key to listen for (e.g., 'm').
+         * @param {Function} cb - The callback function to execute when the key combo is pressed.
+         */
+        onKeydown(key, cb) {
+            $(document).on('keydown', e => {
+                if (e.ctrlKey && e.key === key) {
+                    cb();
+                }
+            });
+        }
     }
 
     unsafeWindow.HelperLib = HelperLib;
