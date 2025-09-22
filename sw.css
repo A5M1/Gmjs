@@ -85,17 +85,18 @@
                 color: #eee;
             }
 
+
         #preview {
-    max-width: 75%;
-    max-height: fit-content;
-	        display: flex;
-	        align-items: center;
-	        justify-content: center;
-	        background: #222;
-	        border-radius: 8px;
-	        overflow: hidden;
-	        transition: transform 0.3s ease;
-        }
+
+    max-width: 75vw;
+    max-height: 75vh;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    justify-content: center;
+    }
 
             #preview img,
             #preview video {
